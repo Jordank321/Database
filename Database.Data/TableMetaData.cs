@@ -19,7 +19,8 @@ namespace Database.Data
                 });
             }            
         }
-
+        
+        public ColumnMetadata IdColumn { get; set; }
         public List<ColumnMetadata> Columns { get; set; }
     }
 

@@ -28,7 +28,10 @@ namespace Database.Data
         }
 
         public TRow FindById(object id){
-            _metadata.IdColumn.
+            if (_metadata.IdColumn.Type != DbTypeHelpers.GetDbType(id.GetType()))
+                throw new ArgumentException($"Could not map the type {id.GetType().FullName} to the Id column DB type {_metadata.IdColumn.Type.ToString()}");
+
+            return _data.FindRow(id);
         }
 
         private void SetupCore()
